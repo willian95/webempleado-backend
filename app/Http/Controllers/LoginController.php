@@ -11,17 +11,18 @@ class LoginController extends Controller
     
 	function login(Request $request){
 
-		$user = UserSiintra::where('login', $request->cedula)->first(); //busca la cédula de la persona
+		$user = UserSiintra::where('login', $request->cedula)->first();
 		
-		if($user){ // si encuentra la cedula
+		if($user){
 
-			if($user->baneado == 1){ // si usuario está baneado
+			if($user->baneado == 1){
 				return redirect()->back()->with(['error' => true, 'message' => 'Lo sentimos, su usuario ha sido bloqueado, contacte al administrador del sistema']);
 			}
 
-			if($user->intentos_fallidos < 5){ 
+			if($user->intentos_fallidos < 5){
 
-				if($user->password == sha1($request->clave)){ //decoficacion de clave sha1 si son iguales entra
+				if($user->password == sha1($request->clave)){
+
 
 					Auth::loginUsingId($user->id_usuario);
 					if(Auth::user()->tipo_usuario == 'S'){
@@ -30,7 +31,8 @@ class LoginController extends Controller
 						return redirect()->back()->with(['error' => true, 'message' => 'Lo sentimos, estamos trabajando en el módulo de usuarios']);
 					}
 
-				}else{ // if($user->password == sha1($request->clave)) no son iguales
+				}else{
+
 
 					$user = UserSiintra::where('cedula_usuario', $request->cedula)->first();
 					$user->intentos_fallidos = $user->intentos_fallidos + 1;
@@ -48,7 +50,9 @@ class LoginController extends Controller
 
 			}
 
-		}else{ //if($user) si no encuentra la cedula
+
+		}else{
+
 			return redirect()->back()->with(['error' => true, 'message' => 'Usuario no encontrado']);
 		}
 
@@ -57,7 +61,7 @@ class LoginController extends Controller
 	function loginAPI(Request $request){
 
 		$user = UserSiintra::where('login', $request->cedula)->first();
-
+		
 		if($user){
 
 			if($user->baneado == 1){
@@ -69,7 +73,9 @@ class LoginController extends Controller
 				if($user->password == sha1($request->clave)){
 
 					Auth::loginUsingId($user->id_usuario);
-					return response()->json(['error' => false, 'redirect' => true, 'data' => $user]);
+
+					return response()->json(['error' => false, 'redirect' => true]);
+
 
 				}else{
 

@@ -24,6 +24,7 @@ Route::get('/admin/usuarios/all', 'UsersController@getUsers');
 
 Route::get('/logout', 'LoginController@logout');
 
+<<<<<<< HEAD
 Route::group(['middleware' => 'cors'], function () {
 	//Route::prefix('api')->group(function () {
 
@@ -33,5 +34,13 @@ Route::group(['middleware' => 'cors'], function () {
 
 
 	//});
+=======
+Route::prefix('api')->group(function () {
+
+	Route::get('/work-constancy/create', 'WorkConstancyController@create');
+	Route::post('/login', 'LoginController@loginAPI');
+
+
+>>>>>>> 8afae6ed4eca0ded92e92cd5c4c152a3f9d9ec41
 });
 

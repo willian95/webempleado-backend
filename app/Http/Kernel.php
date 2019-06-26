@@ -39,7 +39,12 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:60,1',
+<<<<<<< HEAD
             'bindings'
+=======
+            'bindings',
+            \Barryvdh\Cors\HandleCors::class,
+>>>>>>> 8afae6ed4eca0ded92e92cd5c4c152a3f9d9ec41
         ],
     ];
 
@@ -59,6 +64,9 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+<<<<<<< HEAD
         'cors' => \Barryvdh\Cors\HandleCors::class,
+=======
+>>>>>>> 8afae6ed4eca0ded92e92cd5c4c152a3f9d9ec41
     ];
 }
