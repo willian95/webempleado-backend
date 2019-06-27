@@ -160,6 +160,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+<<<<<<< HEAD
+        Barryvdh\Cors\ServiceProvider::class,
+
+=======
+>>>>>>> 8afae6ed4eca0ded92e92cd5c4c152a3f9d9ec41
 
     ],
 

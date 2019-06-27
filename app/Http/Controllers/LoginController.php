@@ -23,6 +23,7 @@ class LoginController extends Controller
 
 				if($user->password == sha1($request->clave)){
 
+
 					Auth::loginUsingId($user->id_usuario);
 					if(Auth::user()->tipo_usuario == 'S'){
 						return redirect()->to('/admin/dashboard');
@@ -31,6 +32,7 @@ class LoginController extends Controller
 					}
 
 				}else{
+
 
 					$user = UserSiintra::where('cedula_usuario', $request->cedula)->first();
 					$user->intentos_fallidos = $user->intentos_fallidos + 1;
@@ -48,7 +50,9 @@ class LoginController extends Controller
 
 			}
 
+
 		}else{
+
 			return redirect()->back()->with(['error' => true, 'message' => 'Usuario no encontrado']);
 		}
 
@@ -69,7 +73,9 @@ class LoginController extends Controller
 				if($user->password == sha1($request->clave)){
 
 					Auth::loginUsingId($user->id_usuario);
+
 					return response()->json(['error' => false, 'redirect' => true]);
+
 
 				}else{
 
